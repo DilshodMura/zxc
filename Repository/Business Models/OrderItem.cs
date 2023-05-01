@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
 
 namespace Repository.Business_Models
 {
-    internal class OrderItem
+    public sealed class OrderItem:IOrderItem
     {
+        public int OrderItemId { get; set; }
+        public int ProductId { get; set; }
+
+        public int Quantity { get; set; }
+
+        public decimal Price { get; set; }
     }
 }

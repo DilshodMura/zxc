@@ -21,32 +21,32 @@ namespace Repository.Repository
         public async Task<ICustomer> GetByIdAsync(int id)
         {
             var customerEntity = await _dbContext.Customers.FindAsync(id);
-            return _mapper.Map<Customer>(customerEntity);
+            return _mapper.Map<ICustomer>(customerEntity);
         }
 
         public async Task<IEnumerable<ICustomer>> GetAllAsync()
         {
             var customerEntities = await _dbContext.Customers.ToListAsync();
-            return _mapper.Map<IEnumerable<Customer>>(customerEntities);
+            return _mapper.Map<IEnumerable<ICustomer>>(customerEntities);
         }
 
         public async Task AddAsync(ICustomer customer)
         {
-            var customerEntity = _mapper.Map<CustomerEntity>(customer);
+            var customerEntity = _mapper.Map<CustomerDb>(customer);
             await _dbContext.Customers.AddAsync(customerEntity);
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(ICustomer customer)
         {
-            var customerEntity = _mapper.Map<CustomerEntity>(customer);
+            var customerEntity = _mapper.Map<CustomerDb>(customer);
             _dbContext.Entry(customerEntity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
         public async Task RemoveAsync(ICustomer customer)
         {
-            var customerEntity = _mapper.Map<CustomerEntity>(customer);
+            var customerEntity = _mapper.Map<CustomerDb>(customer);
             _dbContext.Customers.Remove(customerEntity);
             await _dbContext.SaveChangesAsync();
         }

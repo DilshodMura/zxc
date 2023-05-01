@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Database.Entites;
 using Domain.Entities;
+using Repository.Business_Models;
 
 namespace Repository.Mapper
 {
@@ -8,10 +9,17 @@ namespace Repository.Mapper
     {
         public MappingProfile() 
         {
-            CreateMap<ICustomer, CustomerDb>();
-            CreateMap<IOrder, OrderDb>();
-            CreateMap<IOrderItem,OrderItemDb>();
-            CreateMap<IProduct, ProductDb>();
+            CreateMap<ICustomer, CustomerDb>().ReverseMap();
+            CreateMap<CustomerDb, Customer>();
+
+            CreateMap<IOrder, OrderDb>().ReverseMap();
+            CreateMap<OrderDb, Order>();
+
+            CreateMap<IOrderItem,OrderItemDb>().ReverseMap();
+            CreateMap<OrderItemDb, OrderItem>();
+
+            CreateMap<IProduct, ProductDb>().ReverseMap();
+            CreateMap<ProductDb, Product>();
         }
     }
 }

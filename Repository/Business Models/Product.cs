@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Domain.Entities;
 
 namespace Repository.Business_Models
 {
-    internal class Product
+    internal class Product : IProduct
     {
+        public int ProductId {get; set;}
+        public string Name { get; set;}
+        public string Description { get; set;}
+        public decimal Price { get; set;}
+        public int Quantity {get; set;}
+        public string PhotoUrl { get; set;}
     }
 }
