@@ -5,6 +5,7 @@ namespace Database
 {
     public class XDbContext : DbContext
     {
+        public DbSet<ApplicationUserDb> ApplicationUsers { get; set; }
         public DbSet<CustomerDb> Customers { get; set; }
         public DbSet<OrderDb> Orders { get; set; }
         public DbSet<OrderItemDb> OrderItems { get; set; }

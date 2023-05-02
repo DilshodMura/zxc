@@ -1,4 +1,4 @@
-﻿using Domain.JWT;
+﻿using Domain.Service;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

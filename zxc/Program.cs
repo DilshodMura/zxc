@@ -1,6 +1,6 @@
 using Database;
-using Domain.JWT;
 using Domain.Repository;
+using Domain.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -26,7 +26,7 @@ builder.Services.AddTransient<IJwtService, JwtService>();
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IOrderItemRepository, OrderItemRepository>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-builder.Services.AddScoped<ICustomerRepository, CustomerRepository>();
+builder.Services.AddScoped<IUserRepository, CustomerRepository>();
 
 builder.Services.AddAuthentication(options =>
 {
