@@ -48,7 +48,7 @@ namespace Repository.Repository
 
         public async Task UpdateAsync(IOrder order)
         {
-            var entity = await _dbContext.Orders.FindAsync(order.Id);
+            var entity = await _dbContext.Orders.FindAsync(order.OrderId);
 
             if (entity == null)
             {
