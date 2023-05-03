@@ -5,6 +5,7 @@ using Domain.Entities;
 using Domain.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace Repository.Repository
 {
@@ -97,6 +98,31 @@ namespace Repository.Repository
             {
                 throw new ApplicationException($"Invalid user role: {userEntity.Role}");
             }
+        }
+
+        public async Task<IUser> GetEmailAsync(string email)
+        {
+            // TODO: Replace this with your actual code to retrieve the user by username from the database or any other data store.
+            var result = await _dbContext.Customers.SingleOrDefaultAsync(u => u.Email == email);
+            return _mapper.Map<IUser>(result);
+        }
+
+        public async Task<bool> CheckPasswordAsync(IUser user, string password)
+        {
+            // TODO: Replace this with your actual code to check if the password is valid for the given user.
+            return await Task.FromResult(BCrypt.Net.BCrypt.Verify(password, user.PasswordHash));
+        }
+        public async Task<ClaimsIdentity> GetClaimsIdentityAsync(IUser user)
+        {
+            // TODO: Replace this with your actual code to retrieve the user claims.
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                // Add any other claims that you want to include in the identity
+            };
+
+            return await Task.FromResult(new ClaimsIdentity(claims, "Token"));
         }
     }
 }

@@ -7,6 +7,6 @@ namespace Domain.Entities
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
-        public string Role { get => "Admin"; set { } }
+        public string Role { get; }
     }
 }
